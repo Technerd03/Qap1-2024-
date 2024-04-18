@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Form</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+</head>
+<body>
+    <div class="container" style="margin-top: 50px;">
+        <label for="name">Name:</label>
+        <input type="text" id="name" placeholder="Enter your name">
+        
+        <label for="age">Age:</label>
+        <input type="text" id="age" placeholder="Enter your age">
+        <br/>
+        <button onclick="makeObj()">Make</button>
+        <button onclick="displayObj()">Display </button>
+
+        <div id="usersDisplay"></div>
+    </div>
+
+    <script>
+        let users = [];
+
+        function User(n, a) {
+            this.name = n;
+            this.age = a;
+        }
+
+        function makeObj() {
+            let name = document.getElementById('name').value;
+            let age = document.getElementById('age').value;
+            let user = new User(name, age);
+            users.push(user);
+            document.getElementById('name').value = '';
+            document.getElementById('age').value = '';
+        }
+
+        function displayObj() {
+            let display = document.getElementById('usersDisplay');
+            display.innerHTML = '';
+            users.forEach((user, index) => {
+                display.innerHTML += `<p>${index + 1}. Name: ${user.name},  Age: ${user.age}</p>`;   
+            })
+        }
+    </script>
+</body>
+</html>

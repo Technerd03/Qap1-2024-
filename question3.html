@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch Todos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <link rel="stylesheet" href="style3.css">
+</head>
+<body>
+    <div class="navbar">
+    <button onclick="fetchTodos()">Fetch Todos Data</button>
+    </div>
+    <div class="container">
+        <div id="todosDisplay"></div>
+    </div>
+
+    <script>
+        function fetchTodos() {
+            fetch('todos.json') // This should be the path to your local JSON file
+            .then(response => response.json())
+            .then(todos => {
+                let display = document.getElementById('todosDisplay');
+                display.innerHTML = ''; // Clear previous data
+                todos.forEach(todo => {
+                    const statusClass = todo.completed ? 'todo-completed' : 'todo-not-completed';
+                    display.innerHTML += `
+                        <div class="todo-item">
+                            <p class="todo-title">${todo.title}</p>
+                            <p>Status: <span class="${statusClass}">${todo.completed ? 'Completed' : 'Not Completed'}</span></p>
+                        </div>`;
+                });
+            })
+            .catch(error => {
+                document.getElementById('todosDisplay').innerHTML = 'Failed to load data.';
+            });
+        }
+    </script>
+    </body>
+    </html>

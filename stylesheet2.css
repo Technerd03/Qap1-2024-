@@ -1,0 +1,41 @@
+body {
+    background-color: #0073e6; /* Medium blue background */
+    color: #333;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.navbar {
+    background-color: #000000;
+    padding: 10px 20px;
+}
+.container {
+    background-color: #40a5e0;
+    padding: 20px;
+    margin: 0 auto;
+    width: 40%;
+    box-shadow: 0 4px 8px black;
+}
+button {
+    width: auto;
+    padding: 10px 20px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+button:hover {
+    background-color: #057dec; 
+}
+#jsonDataDisplay {
+    padding: 10px;
+    background-color: #40a5e0; 
+    border: 1px solid #40a5e0;
+    border-radius: 4px;
+    white-space: pre-wrap; 
+    overflow-wrap: break-word;
+    color: #fafafa; 
+    margin-top: 10px;
+}

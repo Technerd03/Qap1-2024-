@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display JSON Data</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <link rel = "stylesheet" href="stylesheet2.css">
+</head>
+<body>
+    <div class="navbar">
+        <button onclick="showJSON()">Show JSON Data</button>
+    </div>
+    <div class="container">
+        <div id="jsonDataDisplay"></div>
+    </div>
+
+    <script>
+        function showJSON() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "users.json", true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        var jsonData = JSON.parse(xhr.responseText);
+                        var display = document.getElementById('jsonDataDisplay');
+                        display.innerHTML = formatData(jsonData);
+                    } else {
+                        document.getElementById('jsonDataDisplay').innerHTML = 'Failed to load data.';
+                    }
+                }
+            };
+            xhr.send();
+        }
+
+        function formatData(data) {
+            let formattedHtml = '';
+            data.forEach(user => {
+                formattedHtml += `<div class="user-data">
+                                    <p> Answers:</p>
+                                    <p>Name: ${user.name}</p>
+                                    <p>Company: ${user.company}</p>
+                                  </div>`;
+            });
+            return formattedHtml;
+        }
+    </script>
+</body>
+</html>
